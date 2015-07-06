@@ -36,15 +36,13 @@ float *gpuReciprocal(float *data, unsigned size)
 	CUDA_CHECK_RETURN(cudaMalloc((void **)&gpuData, sizeof(float)*size));
 	CUDA_CHECK_RETURN(cudaMemcpy(gpuData, data, sizeof(float)*size, cudaMemcpyHostToDevice));
 	
-	static const int BLOCK_SIZE = 256;
 	const int blockCount = (size+BLOCK_SIZE-1)/BLOCK_SIZE;
 	reciprocalKernel<<<blockCount, BLOCK_SIZE>>> (gpuData, size);
 
-	CUDA_CHECK_RETURN(cudaMemcpy(rc, gpuData, sizeof(float)*size, cudaMemcpyDeviceToHost));
 	CUDA_CHECK_RETURN(cudaFree(gpuData));
 	return rc;
 }
-//it is not really important what i write here.
+//it is not really.
 float *cpuReciprocal(float *data, unsigned size)
 /*{
 	float *rc = new float[size];
