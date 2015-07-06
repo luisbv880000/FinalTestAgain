@@ -29,6 +29,7 @@ __global__ void reciprocalKernel(float *data, unsigned vectorSize) {
  */
 float *gpuReciprocal(float *data, unsigned size)
 {
+	//This is an arbitrary comment
 	float *rc = new float[size];
 	float *gpuData;
 
@@ -43,13 +44,13 @@ float *gpuReciprocal(float *data, unsigned size)
 	CUDA_CHECK_RETURN(cudaFree(gpuData));
 	return rc;
 }
-
+//it is not really important what i write here.
 float *cpuReciprocal(float *data, unsigned size)
-{
+/*{
 	float *rc = new float[size];
 	for (unsigned cnt = 0; cnt < size; ++cnt) rc[cnt] = 1.0/data[cnt];
 	return rc;
-}
+}*/
 
 
 void initialize(float *data, unsigned size)
